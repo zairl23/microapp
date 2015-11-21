@@ -1,0 +1,21 @@
+{
+    "name": "root/new-microapp",
+    "authors": [
+        {
+            "name": "zairl23",
+            "email": "756127792@qq.com"
+        }
+    ],
+    "require": {
+        "torophp/torophp": "dev-master",
+        "pimple/pimple": "^3.0",
+        "container-interop/container-interop": "^1.1",
+        "simple-bus/message-bus": "dev-master"
+    },
+    "minimum-stability":"dev",
+    "autoload": {
+    	"psr-4": {
+    		"Neychang\\Microapp\\": "src/"
+    	}
+    }
+}
