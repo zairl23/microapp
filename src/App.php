@@ -70,7 +70,6 @@ class App {
 			return $commandBus;
 		};
 
-		$registeredServices[] = 'commandBus';
 	}
 
 	protected function registerEventBus($subscribers)
@@ -111,6 +110,5 @@ class App {
 		    return $eventBus;
 		};
 
-		$registeredServices[] = 'eventBus';
 	}
 }
