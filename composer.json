@@ -10,7 +10,10 @@
         "torophp/torophp": "dev-master",
         "pimple/pimple": "^3.0",
         "container-interop/container-interop": "^1.1",
-        "simple-bus/message-bus": "dev-master"
+        "simple-bus/message-bus": "dev-master",
+        "zendframework/zend-diactoros": "^1.4",
+        "zendframework/zend-stratigility": "^2.0",
+        "nikic/fast-route": "^1.2"
     },
     "minimum-stability":"dev",
     "autoload": {

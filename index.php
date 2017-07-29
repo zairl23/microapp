@@ -1,22 +1,29 @@
-<?php 
+<?php
 
-require_once "vendor/autoload.php";
+use Zend\Diactoros\Response;
+use Zend\Diactoros\Server;
+use Zend\Stratigility\MiddlewarePipe;
+use Zend\Stratigility\NoopFinalHandler;
+use Neychang\Microapp\Http\Middlewares\DispatchRoute;
+use Neychang\Microapp\Http\RouteCollection;
 
-use \Toro;
-use Neychang\Microapp\App;
+require __DIR__ . '/vendor/autoload.php';
 
-$app = new App();
+$app = new MiddlewarePipe();
+$app->setResponsePrototype(new Response());
 
-$routes = require_once __DIR__ . "/src/Config/routes.php";
+$server = Server::createServer($app, $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES);
 
-$handers = require_once __DIR__ . "/src/Config/handlers.php";
+$routes = new RouteCollection();
+$routes->addRoute('GET', '/', 'home', function($req, $params, $res){
+    $res->getBody()->write('Hello world!');
+    return $res;
+});
+$routes->addRoute('GET', '/test', 'test', function($req, $params, $res){
+    $res->getBody()->write('Hello test!');
+    return $res;
+});
 
-$subscribers = require_once __DIR__ . "/src/Config/subscribers.php";
+$app->pipe('/', new DispatchRoute($routes));
 
-$app->run($handers, $subscribers);
-
-
-Toro::serve($routes);
-
-
-
+$server->listen(new NoopFinalHandler());
